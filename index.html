@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="CL-Splats: Continual Learning of Gaussian Splatting with Local Optimization">
+  <meta name="keywords" content="Gaussian Splatting, Continual Learning">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CL-Splats: Continual Learning of Gaussian Splatting with Local Optimization</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <style>
+    .container-construction {
+      font-family: Arial, sans-serif;
+      color: #333;
+      text-align: center;
+      background: #fff;
+      border: 2px solid #ff9800;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      max-width: 600px;
+      font-size: 1.5em;
+    }
+
+    .construction-icon {
+      font-size: 5em;
+      margin: 20px 0;
+    }
+
+    @keyframes progress {
+      0% {
+        width: 0%;
+      }
+
+      50% {
+        width: 50%;
+      }
+
+      100% {
+        width: 0%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">CL-Splats: Continual Learning Gaussian Splatting with Local
+              Optimization</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://janackermann.info">Jan Ackermann</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="https://jkulhanek.com">Jonas Kulhanek</a><sup>2</sup>,</span>
+              <span class="author-block">
+                <a href="https://primecai.github.io">Shengqu Cai</a><sup>3</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://haofeixu.github.io">Haofei Xu</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://people.inf.ethz.ch/marc.pollefeys/">Marc Pollefeys</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://stanford.edu/~gordonwz/">Gordon Wetzstein</a><sup>3</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://geometry.stanford.edu/?member=guibas">Leonidas Guibas</a><sup>3</sup>
+              </span>
+              <span class="author-block">
+                <a href="https://pengsongyou.github.io">Songyou Peng</a><sup>4</sup>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>ETH Zurich</span>
+              <span class="author-block"><sup>2</sup>CTU Prague</span>
+              <span class="author-block"><sup>3</sup>Stanford</span>
+              <span class="author-block"><sup>4</sup>Google Deepmind</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv (soon)</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code (soon)</span>
+                  </a>
+                </span>
+                <!-- Dataset Link. -->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="far fa-images"></i>
+                    </span>
+                    <span>Data (soon)</span>
+                  </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/cl-splats_video.mp4" type="video/mp4">
+        </video>
+        <h2 class="subtitle has-text-centered">
+          <span class="dnerf">CL-Splats</span> efficiently updates existing scene reconstruction from an incremental set
+          of images while enabling new applications.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>In dynamic 3D environments, accurately updating scene representations over time is crucial for
+              applications in robotics, mixed reality, and embodied AI. As scenes evolve, efficient methods to
+              incorporate changes are needed to maintain up-to-date, high-quality reconstructions without the
+              computational overhead of re-optimizing the entire scene.
+              This paper introduces CL-Splats, which incrementally updates Gaussian splatting-based 3D representations
+              from sparse scene captures.</p>
+            <p>CL-Splats integrates a robust change-detection module that segments updated and static components within
+              the scene, enabling focused, local optimization that avoids unnecessary re-computation.
+              Moreover, CL-Splats supports storing and recovering previous scene states, facilitating temporal
+              segmentation and new scene-analysis applications.</p>
+            <p>Our extensive experiments demonstrate that CL-Splats achieves efficient updates with improved
+              reconstruction quality over the state-of-the-art. This establishes a robust foundation for future
+              real-time adaptation in 3D scene reconstruction tasks.
+              We will release our source code and the synthetic and real-world datasets we created to support further
+              research in this area.</p>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Animation. -->
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Method</h2>
+          <img src="./static/images/pipeline.png" alt="Method Overview" />
+
+          <!-- Interpolating. -->
+          <div class="content has-text-justified">
+            <p>
+              First, we encode the image pairs with the same backbone which gives us features. We compare those with
+              cosine
+              similarity to obtain scores and finally we project them into 3D where we perform voting. Last, we
+              project those points back into 2D to obtain
+              the masks for optimization. Optimization happens in a 3D restricted space.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Qualitative Comparison. -->
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Qualitative Comparison</h2>
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <img src="./static/images/qualitatives.png" alt="Qualitative comparisons" class="mx-auto" style="display: block; margin-left: auto; margin-right: auto;" />
+              <p class="has-text-centered">Comparisons on synthetic and real-world scenes with a baseline and a state-of-the-art method.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@article{ackermann2024clsplats,
+  author    = {Ackermann, Jan and Kulhanek, Jonas and Cai, Shengqu and Haofei, Xu and Pollefeys, Marc and Wetzstein, Gordon and Guibas, Leonidas and Peng, Songyou},
+  title     = {CL-Splats: Continual Learning Gaussian Splatting with Local Optimization},
+  journal   = {arxiv},
+  year      = {2025},
+}</code></pre>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+
+    <div class="columns is-centered">
+      <div class="content">
+        <p>
+          The website template is borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
